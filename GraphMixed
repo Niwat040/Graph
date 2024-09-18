@@ -1,0 +1,62 @@
+import java.util.LinkedList;
+import java.util.HashMap;
+
+class GraphMixed {
+    private final int V; // จำนวน vertices
+    private final LinkedList<Integer>[] adjacencyList;
+    private final HashMap<Integer, String> vertexNames; // เก็บชื่อ vertices
+
+    public GraphMixed(int v) {
+        V = v;
+        adjacencyList = new LinkedList[V];
+        vertexNames = new HashMap<>();
+        for (int i = 0; i < V; i++) {
+            adjacencyList[i] = new LinkedList<>();
+        }
+        // กำหนดชื่อจุด
+        vertexNames.put(0, "A");
+        vertexNames.put(1, "B");
+        vertexNames.put(2, "C");
+        vertexNames.put(3, "D");
+        vertexNames.put(4, "E");
+        vertexNames.put(5, "H");
+        vertexNames.put(6, "J");
+        vertexNames.put(7, "K");
+    }
+
+    // เพิ่มการเชื่อมต่อระหว่างจุด
+    public void addEdge(int source, int destination) {
+        adjacencyList[source].add(destination);
+        adjacencyList[destination].add(source); // ทำให้เป็น Undirected Graph
+    }
+
+    // แสดงกราฟ
+    public void printGraph() {
+        for (int i = 0; i < V; i++) {
+            System.out.print(vertexNames.get(i) + " -> ");
+            for (Integer vertex : adjacencyList[i]) {
+                System.out.print(vertexNames.get(vertex) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int V = 8; // จำนวน vertices
+        GraphMixed graph = new GraphMixed(V);
+
+        // เชื่อมต่อ edges (A=0, B=1, C=2, D=3, E=4, H=5, J=6, K=7)
+        graph.addEdge(0, 1); // A ↔ B
+        graph.addEdge(0, 4); // A ↔ E
+        graph.addEdge(1, 2); // B ↔ C
+        graph.addEdge(4, 5); // E ↔ H
+        graph.addEdge(2, 3); // C ↔ D
+        graph.addEdge(5, 6); // H ↔ J
+        graph.addEdge(3, 1); // D ↔ B
+        graph.addEdge(3, 7); // D ↔ K
+        graph.addEdge(7, 0); // K ↔ A
+
+        // แสดงผลกราฟ
+        graph.printGraph();
+    }
+}
