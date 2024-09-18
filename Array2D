@@ -1,0 +1,42 @@
+
+import java.lang.reflect.Array;
+
+class Array2D {
+    static final int V = 8; // จำนวน vertices
+    boolean[][] adjacencyMatrix = new boolean[V][V];
+
+    public Array2D() {
+        int a = 0, b = 1, c = 2, d = 3, e = 4, h = 5, j = 6, k = 7;
+
+        // เชื่อมต่อ edges
+        adjacencyMatrix[a][b] = true; // A -> B
+        adjacencyMatrix[a][e] = true; // A -> E
+        adjacencyMatrix[b][c] = true; // B -> C
+        adjacencyMatrix[e][h] = true; // E -> H
+        adjacencyMatrix[c][b] = true; // C -> B
+        adjacencyMatrix[c][d] = true; // C -> D
+        adjacencyMatrix[h][j] = true; // H -> J
+        adjacencyMatrix[d][b] = true; // D -> B
+        adjacencyMatrix[d][c] = true; // D -> C
+        adjacencyMatrix[d][e] = true; // D -> E
+        adjacencyMatrix[d][k] = true; // D -> K
+        adjacencyMatrix[k][a] = true; // K -> A
+    }
+
+    public void printGraph() {
+        for (int i = 0; i < V; i++) {
+            System.out.print(i + " -> ");
+            for (int j = 0; j < V; j++) {
+                if (adjacencyMatrix[i][j]) {
+                    System.out.print(j + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Array2D graph = new Array2D();
+        graph.printGraph();
+    }
+}
