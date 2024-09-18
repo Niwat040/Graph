@@ -1,0 +1,28 @@
+public class Array1D {
+    String[] vertices = {"A", "B", "C", "D", "E", "H", "J", "K"};
+    String[][] adjacencyList = {
+        {"B", "E"},   // A
+        {"C"},       // B
+        {"B", "D"},  // C
+        {"B", "C", "E", "K"}, // D
+        {"H"},       // E
+        {"J"},       // H
+        {},          // J
+        {"A"}        // K
+    };
+
+    public void printGraph() {
+        for (int i = 0; i < vertices.length; i++) {
+            System.out.print(vertices[i] + " -> ");
+            for (String edge : adjacencyList[i]) {
+                System.out.print(edge + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Array1D graph = new Array1D();
+        graph.printGraph();
+    }
+}
